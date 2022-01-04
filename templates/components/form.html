@@ -13,7 +13,7 @@
     </div>
 </div>
 {% else %}
-<p style="color:red">aplicacion no pulida, para mas informacion visita el codigo fuente:<a href=""></a></p>
+<p style="color:red">aplicacion no pulida, para mas informacion visita el codigo fuente:<a href="https://github.com/SonicHaveJar/toy-asm-compiler/blob/main/compiler.py">compiler.py</a></p>
 {% endif %}
 
 <form method="post" enctype="multipart/form-data">
@@ -24,10 +24,12 @@
         </label>
     </div>
     <br>
+    <p>Elige fichero:</p>
     <div class="input-group">
         <input type="file" class="form-control" name="file" id="file" aria-describedby="file" aria-label="Upload">
     </div>
     <br>
+    <p>o puedes escribirlo directamente:</p>
     <div class="input-group">
         <span class="input-group-text">Codigo</span>
         <textarea class="form-control" name="code" id="code" cols="30" rows="12"></textarea>
