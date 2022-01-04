@@ -1,0 +1,43 @@
+<p class="fs-5 col-md-8">Escribe tu codigo o anade tu archivo</p>
+
+{% if bin %}
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Hecho!</h4>
+    <!-- <a class="mb-0" href="{{xkcd}}" target="_blank">{{xkcd}}</a> -->
+    <hr>
+
+    <div class="card">
+        <div class="card-body">
+            <p class="fw-bold font-monospace text-black" style="white-space: pre;">{{bin}}</p>
+        </div>
+    </div>
+</div>
+{% else %}
+<p style="color:red">aplicacion no pulida, para mas informacion visita el codigo fuente:<a href=""></a></p>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="download" id="download" checked>
+        <label class="form-check-label" for="download">
+            Descargar automaticamente
+        </label>
+    </div>
+    <br>
+    <div class="input-group">
+        <input type="file" class="form-control" name="file" id="file" aria-describedby="file" aria-label="Upload">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-text">Codigo</span>
+        <textarea class="form-control" name="code" id="code" cols="30" rows="12"></textarea>
+    </div>
+    <br>
+    <input class="btn btn-dark w-100" type="submit" value="Enviar">
+</form>
+<br>
+<div class="d-flex justify-content-center">
+    <img src="https://imgs.xkcd.com/comics/automation.png" alt="https://xkcd.com/1319/">
+</div>
+<a class="text-justify" href="https://xkcd.com/1319/">comic por XKCD</a>
+<br>
