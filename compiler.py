@@ -1,3 +1,6 @@
+# La verdad es que no es el mejor codigo que haya escrito
+# pero hace su funcion
+
 from typing import Optional
 from os.path import isfile
 import re
@@ -8,10 +11,12 @@ class Compiler:
   end_directive = ".end"
 
   opcodes = {
-    "add": 0,
-    "cmp": 1,
-    "mov": 2,
-    "beq": 3,
+    "add": 0b00,
+    "cmp": 0b01,
+    "mov": 0b10,
+    "beq": 0b11,
+    "bneq":0b1101,
+    "b":   0b1110,
   }
 
   def __init__(self, input_: Optional[str] = None):
@@ -105,16 +110,24 @@ class Compiler:
         x, y = line.split(',')
 
         instr = f"{self.opcodes[op]:02b}" + f"{self.data[x][0]:07b}" + f"{self.data[y][0]:07b}"
-        # print(instr, x, y, self.data[x][0], self.data[y][0])
-        self.code.append(int(instr, 2))
 
       elif "beq" in line:
         op = line[:3]
-        x = line.split("beq")[-1]
+        x = line.split(op)[-1]
 
         instr = f"{self.opcodes[op]:02b}" + "0"*7 + f"{self.data[x][0]:07b}"
-        self.code.append(int(instr, 2))
 
+      elif "bneq" in line or "b" in line:
+        op = line[:4] if "bneq" in line else line[:1]
+        x = line.split(op)[-1]
+
+        instr = f"{self.opcodes[op]:04b}" + "0"*5 + f"{self.data[x][0]:07b}"
+
+      else:
+        continue
+
+      self.code.append(int(instr, 2))
+        
   # Genera el binario
   def compile(self) -> str:
     output = "v2.0 raw\n"
