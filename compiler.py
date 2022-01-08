@@ -159,8 +159,7 @@ class Compiler:
       prev = addr
       i += 1
 
-    return re.sub('\d+[ \n\t0"*"]+$', "", output) # TODO: Cambiar a algo mejor
-  
+    return re.sub('\d+[ 0"*"]+$', "", output.rstrip()) # TODO: Cambiar a algo mejor
 
   # Funcion para el uso mas comodo de la clase
   def __call__(self, output_file: Optional[str] = None):
@@ -181,4 +180,3 @@ if __name__ == "__main__":
   a = Compiler(sys.argv[1])
   print(a())
  
-
