@@ -159,7 +159,7 @@ class Compiler:
       prev = addr
       i += 1
 
-    return re.sub('\d+[ 0"*"]+$', "", output.rstrip()) # TODO: Cambiar a algo mejor
+    return re.sub('[ 0]*(\d+["*"])[ 0]*$|(?<!\w)[ 0]+$', "", output.rstrip()) # TODO: Cambiar a algo mejor
 
   # Funcion para el uso mas comodo de la clase
   def __call__(self, output_file: Optional[str] = None):
